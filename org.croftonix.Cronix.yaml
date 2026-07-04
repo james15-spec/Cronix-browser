@@ -102,8 +102,8 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/james15-spec/Cronix-browser/releases/download/v1.4.1/cronix.deb
-        sha256: ee483607b25b283b94d1e94133a9167767788a6501ce18d98690cc90b55b582f
+        url: https://github.com/james15-spec/Cronix-browser/releases/download/v1.4.2/cronix_1.4.2.deb
+        sha256: c4949af441cf966b325347f49d65628359b0138fe8977cea6e56949f57ea0234
         dest-filename: cronix.deb
 
     build-commands:
@@ -137,3 +137,8 @@ modules:
           /app/share/applications/org.croftonix.Cronix.desktop
       - cp /app/share/pixmaps/cronix.png
           /app/share/icons/hicolor/256x256/apps/org.croftonix.Cronix.png
+
+      # AppStream metainfo (required by Flathub)
+      - mkdir -p /app/share/metainfo
+      - cp deb_data/usr/share/metainfo/org.croftonix.Cronix.metainfo.xml
+          /app/share/metainfo/
