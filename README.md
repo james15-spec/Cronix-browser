@@ -20,7 +20,7 @@ To install Cronix Browser, follow these steps:
 ### Step 1: Download the installer script
 ```bash
 git clone https://github.com/james15-spec/Cronix-browser.git
-cd Cronix-Browser
+cd Cronix-browser
 ```
 
 ### Step 2: Make the script executable
