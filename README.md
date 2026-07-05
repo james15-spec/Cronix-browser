@@ -56,7 +56,7 @@ cronix
 *(All unnecessary warning messages and background debug logs are filtered out automatically for a clean terminal experience)*
 
 ## Any Issues?
-if there are any issues, we're happy to help and to try and fix them, just get in touch at:
+if there are any issues or questions, we're happy to help and to try and fix/answer them, just get in touch at:
 ```mailto
 croftonixstudios@outlook.com
 ```
