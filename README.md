@@ -8,7 +8,6 @@ This guide will walk you through installing the Cronix Browser on your Linux sys
 Before running the installation, ensure you have:
 * An active internet connection.
 * **Sudo/Administrator** privileges on your machine.
-* A GitHub account (the script uses the GitHub CLI to safely fetch the latest release).
 
 ---
 
@@ -39,12 +38,12 @@ Execute the script to start the installation process:
 
 ## 🔄 What the Installer Does Automatically
 
-1. **GitHub CLI Verification:** Checks if you are authenticated with `gh`. If not, it safely prompts you to log in.
-2. **Dependency Management:** Automatically updates your package lists and installs required system dependencies (`python3`, `pip`, `python3-venv`, and `gh`).
-3. **Clean Up:** Automatically locates and removes any outdated `.deb` install files from your directory.
-4. **Targeted Download:** Fetches the absolute newest release file from the repository.
-5. **System Installation:** Installs the `.deb` package using your native system package manager (`apt`).
-6. **Silent Launch:** Starts Cronix Browser immediately while suppressing noisy backend graphical terminal logs.
+
+1. **Dependency Management:** Automatically updates your package lists and installs required system dependencies.
+2. **Clean Up:** Automatically locates and removes any outdated `.deb` install files from your directory.
+3. **Creation** Compiles the compressed source code into a .deb.
+4. **System Installation:** Installs the `.deb` package using your native system package manager (`apt`).
+5. **Silent Launch:** Starts Cronix Browser immediately while suppressing noisy backend graphical terminal logs.
 
 ---
 
