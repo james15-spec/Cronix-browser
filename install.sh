@@ -12,14 +12,6 @@ run_cronix_silently() {
     cronix > /dev/null 2>&1 &
 }
 
-
-check_github_login() {
-    if ! gh auth status >/dev/null 2>&1; then
-        echo "Please log in to continue the download:"
-        gh auth login
-    fi
-}
-
 OLD_DEB_FILE=$(find "$DIRECTORY" -maxdepth 1 -type f -name "*$KEYWORD*.deb" | head -n 1)
 rm -f "$OLD_DEB_FILE"
 
@@ -32,22 +24,37 @@ else
 
     echo "Checking Dependencies..."
     sudo apt update
-    sudo apt install -y python3 python3-pip python3-venv gh
-    echo "Dependencies installed! Logging you in to Github!"
-    check_github_login
+    # Added zstd and binutils (provides 'ar') to ensure compression works
+    sudo apt install -y python3 python3-pip python3-venv zstd binutils
+    echo "Dependencies installed!"
     echo "Checks done! Proceeding..."
-    echo "Downloading..."
-    gh release download --repo "james15-spec/Cronix-browser" -D "$DIRECTORY"
+    
+    echo "Compiling..."
+    # 1. Ensure we are exactly in the original directory before navigating
+    cd "$DIRECTORY"
+    
+    # 2. Navigate into the source directory
+    cd cronix_1.4.2 || { echo "Error: cronix_1.4.2 folder not found!"; exit 1; }
+    rm -f README.md
+    
+    # 4. Create the final .deb package using 'ar'
+    ar rcs "../cronix_1.4.2.deb" debian-binary control.tar.zst data.tar.zst
+    
+    # 5. Safely return back to the root directory
+    cd "$DIRECTORY"
     
     echo "Installing..."
+    # Added a tiny pause to make sure the filesystem registers the new file
+    sleep 1
     DEB_FILE=$(find "$DIRECTORY" -maxdepth 1 -type f -name "*$KEYWORD*.deb" | head -n 1)
     
     if [ -z "$DEB_FILE" ]; then
-        echo "Error: No .deb file found matching '$KEYWORD'"
+        echo "Error: No .deb file found matching '$KEYWORD' in $DIRECTORY"
         exit 1
     fi
 
-    sudo apt install -y "$DEB_FILE"
+    # Using ./ prefix ensures apt recognizes it as a local file pathway
+    sudo apt install -y "./$(basename "$DEB_FILE")"
     echo "Done! Running Cronix..."
     run_cronix_silently
 fi
