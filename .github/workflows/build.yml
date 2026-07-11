@@ -1,25 +1,49 @@
-name: Build Windows EXE
+name: Build Cronix
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-windows:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
-      - run: pip install pyinstaller PyQt6
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller PyQt6
 
-      - run: pyinstaller --onefile --windowed --collect-all PyQt6 --icon=cronix.ico --name=Cronix cronix.py
+      - name: Build EXE
+        run: |
+          pyinstaller --onefile --windowed --collect-all PyQt6 --icon=cronix.ico --name=Cronix cronix.py
 
-      - uses: actions/upload-artifact@v4
+      - name: Install NSIS
+        run: choco install nsis -y
+
+      - name: Create installer
+        run: |
+          makensis cronix_installer.nsi
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
         with:
-          name: Cronix
+          name: Cronix-exe
           path: dist/Cronix.exe
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cronix-installer
+          path: |
+            *.exe
+            !dist/Cronix.exe
