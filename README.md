@@ -9,6 +9,9 @@ for Windows, extract the cronix-installer.zip and double click(open) the setup e
 ### Notice
 Cronix is currently unsigned, so Windows may show a SmartScreen warning. Click More info → Run anyway to install.
 
+---
+## Linux Users
+
 ## 📋 Prerequisites
 
 Before running the installation, ensure you have:
