@@ -40,10 +40,3 @@ jobs:
           name: Cronix-installer
           path: CronixSetup.exe
 
-      - name: Upload installer
-        uses: actions/upload-artifact@v4
-        with:
-          name: Cronix-installer
-          path: |
-            *.exe
-            !dist/Cronix.exe
