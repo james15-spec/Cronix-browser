@@ -1,0 +1,30 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install pyinstaller PyQt6
+
+      - run: |
+          pyinstaller --onefile --windowed ^
+            --collect-all PyQt6 ^
+            --icon=cronix.ico ^
+            --name=Cronix ^
+            cronix.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Cronix
+          path: dist/Cronix.exe
