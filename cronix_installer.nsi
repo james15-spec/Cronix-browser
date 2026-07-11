@@ -63,7 +63,7 @@ Section "Cronix (required)" SecMain
 
   ; Install files from PyInstaller dist folder
   SetOutPath "$INSTDIR"
-  File /r "..\dist\Cronix\*.*"
+  File "dist\Cronix.exe"
 
   ; Write install dir to registry
   WriteRegStr HKLM "Software\Croftonix\Cronix" "Install_Dir" "$INSTDIR"
