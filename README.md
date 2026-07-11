@@ -1,7 +1,7 @@
 # Cronix
 # 🚀 Cronix Browser Installation Guide
 
-This guide will walk you through installing the Cronix Browser on your Linux system. We provide an automated installation script that checks dependencies, logs you into GitHub CLI if needed, downloads the latest release, and installs the application cleanly.
+This guide will walk you through installing the Cronix Browser on your Linux or Windows system. We provide an automated installation script for linux users (for Windows users, we provide a exe installer) that checks dependencies, logs you into GitHub CLI if needed, downloads the latest release, and installs the application cleanly.
 
 ## 📋 Prerequisites
 
@@ -12,7 +12,7 @@ Before running the installation, ensure you have:
 ---
 
 
-## 🛠️ Installation
+## 🛠️ Installation For Linux
 
 To install Cronix Browser, follow these steps:
 
@@ -46,6 +46,7 @@ Execute the script to start the installation process:
 5. **Silent Launch:** Starts Cronix Browser immediately while suppressing noisy backend graphical terminal logs.
 
 ---
+
 
 ## 🏃 Running Cronix Browser
 
