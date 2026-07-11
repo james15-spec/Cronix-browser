@@ -21,11 +21,11 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller PyQt6
+          pip install pyinstaller PyQt6 PyQt6-WebEngine
 
       - name: Build EXE
         run: |
-          pyinstaller --onefile --windowed --collect-all PyQt6 --icon=cronix.ico --name=Cronix cronix.py
+          pyinstaller --onefile --windowed --collect-all PyQt6 --collect-all PyQt6-WebEngine --hidden-import PyQt6.QtWebEngineWidgets --hidden-import PyQt6.QtWebEngineCore  --icon=cronix.ico --name=Cronix cronix.py
 
       - name: Install NSIS
         run: choco install nsis -y
@@ -34,11 +34,11 @@ jobs:
         run: |
            & "C:\Program Files (x86)\NSIS\makensis.exe" cronix_installer.nsi
 
-      - name: Upload EXE
+      - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
-          name: Cronix-exe
-          path: dist/Cronix.exe
+          name: Cronix-installer
+          path: CronixSetup.exe
 
       - name: Upload installer
         uses: actions/upload-artifact@v4
