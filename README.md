@@ -3,9 +3,13 @@
 
 This guide will walk you through installing the Cronix Browser on your system. Cronix is available for Windows, Linux and Android. We provide an automated installation script for linux users (for Windows users, we provide a exe installer) that checks dependencies, logs you into GitHub CLI if needed, downloads the latest release, and installs the application cleanly.
 
+## Android Users
+
+For installation instructions for Android, head [here](https://github.com/james15-spec/Cronix-browser/tree/main/android/README.md) or go onto the android folder in this repo and read the installation instructions.
+
 ## Windows Users
 
-for Windows, extract the cronix-installer.zip and double click (open) the setup exe file.
+For Windows, extract the cronix-installer.zip and double click (open) the setup exe file.
 
 ### Notice - Please read!
 Cronix is currently unsigned, so Windows may show a SmartScreen warning. Click More info → Run anyway to install. 
